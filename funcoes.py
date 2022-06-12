@@ -10,64 +10,52 @@ def inicializa_letras_acertadas(palavra):
 def limparLetras(item):
     return item.upper().replace(" ","")
 
-"""def tentativaChute(){
-
-}"""
-
-def chute(letrasTentadas,listChave,letras_acertadas):
-    telaCheia = 0
-    while True:
-        chute = (input("Chute uma letra: "))
-        chute = limparLetras(chute)
-        if not chute in letrasTentadas:
-            letrasTentadas.append(chute)
-            #Chamar função ChuteCerto
-            if (chute in listChave):
-                index = 0 
-                for letra in listChave:
-                    if (chute == letra):
-                        letras_acertadas[index] = letra
-                    index += 1
-                print('   '.join(letras_acertadas))
-            
-                
-            break
-        print("Você já tentou esta letra!")
-        """telaCheia = telaCheia + 1
-        print(telaCheia)
-        if telaCheia == 4:
-            limparTela()
-            telaCheia = 0"""
-        
-
-
-    
-
-
-"""
-def chutesCertos():
-    print()
-
-
-
-
-while erros <5:
-    if ("_" not in letras_acertadas):
-        print("ganhou")
-        break
+def addLetra(chute, letrasTentadas):
+    if not chute in letrasTentadas:
+        letrasTentadas.append(chute)
     else:
-        chute = (input("Chute uma letra: "))
-        chute = limparLetras(chute)
+        print("Você já tentou esta letra!")
 
-        if (chute in listChave)==True:
-            index = 0 
-            for letra in listChave:
-                if (chute == letra):
-                    letras_acertadas[index] = letra
-                index += 1
-            print('   '.join(letras_acertadas))
-        else: print("Errou!");erros += 1
+def verificaLetra(palavra):
+    while not palavra.isalpha():
+        print("\nErro, informe apenas letras!\n")
+        palavra = str(input("Informe a palavra Chave: "))
+    return palavra.upper()
 
+def desenha_forca(erros):
+    print("  _______     ")
+    print(" |/      |    ")
 
+    if(erros == 1):
+        print (" |      (_)   ")
+        print (" |       |    ")
+        print (" |            ")
+        print (" |            ")
 
-        """
+    if(erros == 2):
+        print (" |      (_)   ")
+        print (" |      \|    ")
+        print (" |       |    ")
+        print (" |            ")
+
+    if(erros == 3):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |            ")
+
+    if(erros == 4):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |      /     ")
+
+    if (erros == 5):
+        print (" |      (_)   ")
+        print (" |      \|/   ")
+        print (" |       |    ")
+        print (" |      / \   ")
+
+    print(" |            ")
+    print("_|___         ")
+    print()
