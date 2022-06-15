@@ -1,10 +1,10 @@
 import time
-from funcoes import addLetra, limparTela, inicializa_letras_acertadas,limparLetras,verificaLetra, desenha_forca
+from funcoes import limparTela, inicializa_letras_acertadas,limparLetras,verificaLetra, desenha_forca
 
 limparTela()
 
-print("Jogo da Forca\n")
 while True:
+    print("Jogo da Forca\n")
     print("(1) Jogar")
     print("(2) Sair")
     comando = str(input("-> "))
@@ -29,29 +29,27 @@ while True:
         letrasTentadas = []
         dicasPedidas = 0
         erros = int(0)
-
         for letra in palavra:
             listChave.append(letra)
-
         letras_acertadas = inicializa_letras_acertadas(palavra)
-
 
         while True:
             print('   '.join(letras_acertadas)+"\n")
             if ("_" not in letras_acertadas):
                 limparTela()
                 print('   '.join(letras_acertadas)+"\n")
-                ganhador = (f"Palavra: {palavra} > Vencedor: Competidor {competidor}, Desafiante: {desafiante}")
-                print(ganhador)
-                input("Pressione enter para continuar: ")
+                ganhador = (f"Palavra: {palavra} – Vencedor: Competidor {competidor} , Perdedor: Desafiante {desafiante}")
+                print(f"O competidor {competidor} ganhou!!")
+                input("\nPressione enter para continuar: ")
                 limparTela()
                 break
             if erros == 5:
                 limparTela()
                 print('   '.join(letras_acertadas)+"\n")
-                ganhador = (f"Palavra: {palavra} > Vencedor: Desafiante: {desafiante}, Competidor {competidor}")
-                print(ganhador)
-                input("Pressione enter para continuar: ")
+                ganhador = (f"Palavra: {palavra} – Vencedor: Desafiante {desafiante} , Perdedor: Competidor {competidor}")
+                print(f"O desafiante {desafiante} ganhou!!")
+                print(f"A palavra chave era {palavra}")
+                input("\nPressione enter para continuar: ")
                 limparTela()
                 break
                 
@@ -60,7 +58,6 @@ while True:
             print("(2) Solicitar Dica\n")
             escolha = str(input("-> "))
             limparTela()
-
             print('   '.join(letras_acertadas)+"\n")
 
             if escolha == "1":
@@ -122,38 +119,33 @@ while True:
 
         while True:
             limparTela()
-            print("Histórico de partidas:\n")
-
             try:
-                
-                arquivo = open('arquivo.txt','r+')
-                arquivo.seek(0)
-                arquivo.write(ganhador+'\n')
-
+                print("\n")
+                arquivo = open('arquivo.txt','a')
+                arquivo.write(ganhador + "\n")
                 arquivo.close()
-                print("Arquivo salvo com sucesso!")
+                
+                arquivo = open('arquivo.txt','r')
+                limparTela()
+                print("Histórico de partidas:\n")
+                for linha in arquivo:
+                    linha = linha.rstrip()
+                    print (linha)
+                arquivo.close()
+                input("\nPressione enter para continuar: ")
+                limparTela()
                 break
+                
             except:
                 arquivo = open('arquivo.txt','w')
                 arquivo.close()
-                print("Arquivo criado com sucesso!")
             
-
-
-
-
     elif(comando == "2"):
-        print("Você escolheu sair!")
+        print("\nVocê escolheu sair!")
         time.sleep(2)
+        limparTela()
         break
 
     else:
         limparTela()
         print("Selecione uma das opções!\n")
-        
-
-
-
-        
-
-        
